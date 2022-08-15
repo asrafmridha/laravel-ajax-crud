@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
@@ -18,17 +19,17 @@
 
 <div class="form-group">
 <label for="exampleInputEmail1">First Name</label>
-<input type="text" class="fname form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your First Name"  >
+<input type="text" class="fName form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your First Name"  >
 
 </div>
 <div class="form-group">
   <label for="exampleInputEmail1">Last Name</label>
-  <input type="text" class="lname form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Last Name"  >
+  <input type="text" class="lName form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Last Name"  >
   
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Address</label>
-    <textarea name="" id="" cols="30" rows="1" class="address form-control" placeholder="Enter Your Address">
+    <textarea id="" cols="30" rows="1" class="address form-control" placeholder="Enter Your Address">
 
     </textarea>
     
@@ -41,7 +42,7 @@
 
 
 <div class="form-group">
-<label for="exampleInputPassword1">Phone</label>
+<label for="exampleInputPassword1">Email</label>
 <input type="email" class="email form-control" id="exampleInputPassword1" placeholder="Enter Your email" >
 </div>
 
@@ -56,16 +57,78 @@
 </select>
 </div> 
 
-<button name="save" type="submit" class="btn btn-primary mt-3">Submit</button>
+<button  type="submit" class="addemployee btn btn-primary mt-3">Submit</button>
 
 
 </div>
 </div>
 
-</form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  <script>
+
+    jQuery(document).ready(function(){
+        jQuery(".addemployee").click(function(){
+
+            $.ajaxSetup({
+          headers: {
+         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+       });
+
+
+        var fName=jQuery(".fName").val();
+           var lName=jQuery(".lName").val();
+           var address=jQuery(".address").val();
+           var phone=jQuery(".phone").val();
+           var email=jQuery(".email").val();
+           var status=jQuery(".status").val();
+        
+            $.ajax({
+                type: "POST",
+                url: "addemployee",
+                dataType: "JSON",
+                data:{
+
+                    fName:fName,
+                    lName:lName,
+                    address:address,
+                    phone:phone,
+                    email:email,
+                    status:status
+                },
+                 success:function (response) {
+                    if(response.msg=="success"){
+
+                        alert("data Submitted");
+
+                        jQuery(".fName").val("");
+                        jQuery(".lName").val("");
+                        jQuery(".address").val("");
+                        jQuery(".phone").val("");
+                        jQuery(".email").val("");
+                        jQuery(".status").val("");
+                    }
+                    else{
+
+                        alert("data not submitted");
+                    }
+     
+                }
+            });
+           
+        });  
+        
+
+    });
 
 
 
+
+  </script>
 
 
 
