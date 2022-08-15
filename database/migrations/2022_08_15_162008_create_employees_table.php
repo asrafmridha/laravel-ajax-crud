@@ -14,7 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->id();
+            $table->increments("id");
+            $table->string("fName");
+            $table->string("lName")->nullable();
+            $table->string("address")->nullable();
+            $table->string("phone")->nullable();
+            $table->string("email")->nullable();
+            $table->string("status")->nullable()->comment("1 for active , 2 for inactive");
             $table->timestamps();
         });
     }
