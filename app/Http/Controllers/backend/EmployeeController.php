@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -14,7 +15,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+      return view('addEmployeeView');
     }
 
     /**
@@ -35,7 +36,29 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $employee= new Employee;
+
+       $employee->fName=$request->fName;
+       $employee->lName=$request->lName;
+       $employee->address=$request->address;
+       $employee->phone=$request->phone;
+       $employee->email=$request->email;
+       $employee->status=$request->status;
+       $employee->save();
+       if($employee){
+        return response()->json([
+           
+             "msg"=>"success"
+        ]);
+       }
+       else{
+        return response()->json([
+           
+            "msg"=>"104"
+       ]);
+
+       }
+
     }
 
     /**
@@ -80,6 +103,6 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }
