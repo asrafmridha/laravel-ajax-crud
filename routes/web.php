@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+//route for addemployee view
+Route::get('addemployeeview',[EmployeeController::class,'index'])->name('addemployee');
+
+// Route For add employee with ajax           
+Route::post("addemployee",[EmployeeController::class,"store"]);
+
+
