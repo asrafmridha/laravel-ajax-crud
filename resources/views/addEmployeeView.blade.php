@@ -16,6 +16,10 @@
    
 <div class="col-md-3 offset-md-1 ">
 
+    <div class="msg">
+
+    </div>
+
 
 <div class="form-group">
 <label for="exampleInputEmail1">First Name</label>
@@ -103,7 +107,7 @@
                  success:function (response) {
                     if(response.msg=="success"){
 
-                        alert("data Submitted");
+                        jQuery(".msg").html('<div class="alert alert-success">Data  Submitted</div>');
 
                         jQuery(".fName").val("");
                         jQuery(".lName").val("");
@@ -114,7 +118,7 @@
                     }
                     else{
 
-                        alert("data not submitted");
+                        jQuery(".msg").html('<div class="alert alert-danger">Data Not Submitted</div>');
                     }
      
                 }
@@ -131,6 +135,6 @@
   </script>
 
 
-
+   
 </body>
 </html>
