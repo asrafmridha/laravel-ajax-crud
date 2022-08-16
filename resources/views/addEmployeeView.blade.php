@@ -53,7 +53,7 @@
 
 <div class="form-group">
 <label for="exampleInputPassword1">Status</label>
-<select class="form-control"  id="">
+<select class="status form-control"  id="">
   <option value="#">---Select--</option>
 <option value="1">Active</option>
 <option value="2">Inactive</option>
@@ -65,7 +65,60 @@
 
 
 </div>
+
+
+<div class="col-md-7 ">
+
+<table class="table">
+  <thead>
+    <tr>
+ 
+      <th scope="col">Full Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+      
+      
+    </tr>
+  </tbody>
+</table>
+
+
+
+
 </div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -108,6 +161,7 @@
                     if(response.msg=="success"){
 
                         jQuery(".msg").html('<div class="alert alert-success">Data  Submitted</div>');
+                        jQuery(".alert").fadeOut(1000);
 
                         jQuery(".fName").val("");
                         jQuery(".lName").val("");
@@ -119,6 +173,7 @@
                     else{
 
                         jQuery(".msg").html('<div class="alert alert-danger">Data Not Submitted</div>');
+                        jQuery(".alert").fadeOut(1000);
                     }
      
                 }
