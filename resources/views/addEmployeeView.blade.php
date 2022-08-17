@@ -97,6 +97,39 @@
 
 
 
+<!-- Modal -->
+<div class="modal fade" id="deleteemployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="deletebtn btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -105,7 +138,9 @@
   <script>
 
     jQuery(document).ready(function(){
+
       showemployee();
+
         function showemployee(){
           $.ajax({
             type: "GET",
@@ -120,8 +155,8 @@
                   <td>'+Element.address+'</td>\
                   <td>'+Element.phone+'</td>\
                   <td>'+Element.status+'</td>\
-                  <td><button><i class="fa-solid fa-square-pen"></i></button></td>\
-                  <td><button><i class="fa-solid fa-trash"></i></button></td>\
+                  <td><button id="updatebtn" class="btn btn-success btn-sm"><i class="fa-solid fa-square-pen"></i></button></td>\
+                  <td><button value="'+Element.id+'" class="deleteid btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteemployee"><i class="fa-solid fa-trash"></i></button></td>\
                   </tr>';
               });
 
@@ -134,6 +169,9 @@
 
         } // function showemployee closing bracket
 
+
+   
+    
 
     jQuery(".addemployee").click(function(){
       
@@ -191,9 +229,30 @@
 
       });
 
+      //For delete employee with ajax
+
+      jQuery(document).on("click",".deleteid",function () {
+        var deleteid=jQuery(this).val();
+          jQuery(".deletebtn").val(deleteid);
+
+         });
+
+      $(document).on("click",".deletebtn",function() {
+      var id=jQuery(this).val();
+        $.ajax({
+          type: "GET",
+          url: "deleteemployee/"+id,  
+          dataType: "JSON",
+          success: function (response) {
+            showemployee();
+            jQuery(".msg").html('<div class="alert alert-danger">Delete Successfully</div>');
+            jQuery(".alert").fadeOut(1000);
+          }
+        });
+    });
+      
 
 
-       
       }); 
 
   
