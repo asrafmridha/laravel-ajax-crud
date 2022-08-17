@@ -101,7 +101,7 @@
   <script>
 
     jQuery(document).ready(function(){
-      showemployee()
+      showemployee();
         function showemployee(){
           $.ajax({
             type: "GET",
@@ -130,12 +130,12 @@
 
 
     jQuery(".addemployee").click(function(){
-
-$.ajaxSetup({
-headers: {
-'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-}
-});
+      
+        $.ajaxSetup({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+        });
 
 
         var fName=jQuery(".fName").val();
@@ -144,6 +144,8 @@ headers: {
         var phone=jQuery(".phone").val();
         var email=jQuery(".email").val();
         var status=jQuery(".status").val();
+        showemployee();
+      
 
       $.ajax({
           type: "POST",
@@ -159,6 +161,7 @@ headers: {
         status:status
     },
      success:function (response) {
+      showemployee();
         if(response.msg=="success"){
 
             jQuery(".msg").html('<div class="alert alert-success">Data  Submitted</div>');
@@ -184,33 +187,10 @@ headers: {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-   
        
       }); 
 
-        
-     
   
-
-   
-
 
   </script>
 
