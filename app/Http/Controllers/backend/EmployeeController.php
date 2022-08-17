@@ -67,9 +67,30 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+      $alldata=Employee::all();
+       
+      if($alldata){
+        return response()->json([
+           "status"=>"success",
+            "alldata"=>$alldata
+       
+        ]);
+      }else{
+        return response()->json([
+            "status"=>"404",
+            
+        
+         ]);
+
+      }
+        
+
+       
+      
+
+        
     }
 
     /**

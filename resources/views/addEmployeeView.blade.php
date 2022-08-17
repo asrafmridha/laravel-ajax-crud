@@ -81,42 +81,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-
       
-      
-    </tr>
   </tbody>
 </table>
 
-
-
-
 </div>
 
 
 
-
-
-
-
-
-
-
 </div>
-
-
-
-
-
-    
-
-
-
-
-
-
-
 
 
 
@@ -128,63 +101,103 @@
   <script>
 
     jQuery(document).ready(function(){
-        jQuery(".addemployee").click(function(){
+      showemployee()
+        function showemployee(){
+          $.ajax({
+            type: "GET",
+            url: "showemployee",
+            dataType: "JSON",
+            success: function (response) {
 
-            $.ajaxSetup({
-          headers: {
-         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-       });
+            
+              
+            }
+          });
+
+        } // function showemployee closing bracket
+
+
+    jQuery(".addemployee").click(function(){
+
+$.ajaxSetup({
+headers: {
+'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+}
+});
 
 
         var fName=jQuery(".fName").val();
-           var lName=jQuery(".lName").val();
-           var address=jQuery(".address").val();
-           var phone=jQuery(".phone").val();
-           var email=jQuery(".email").val();
-           var status=jQuery(".status").val();
+        var lName=jQuery(".lName").val();
+        var address=jQuery(".address").val();
+        var phone=jQuery(".phone").val();
+        var email=jQuery(".email").val();
+        var status=jQuery(".status").val();
+
+      $.ajax({
+          type: "POST",
+          url: "addemployee",
+          dataType: "JSON",
+          data:{
+
+        fName:fName,
+        lName:lName,
+        address:address,
+        phone:phone,
+        email:email,
+        status:status
+    },
+     success:function (response) {
+        if(response.msg=="success"){
+
+            jQuery(".msg").html('<div class="alert alert-success">Data  Submitted</div>');
+            jQuery(".alert").fadeOut(1000);
+
+            jQuery(".fName").val("");
+            jQuery(".lName").val("");
+            jQuery(".address").val("");
+            jQuery(".phone").val("");
+            jQuery(".email").val("");
+            jQuery(".status").val("");
+        }
+        else{
+
+            jQuery(".msg").html('<div class="alert alert-danger">Data Not Submitted</div>');
+            jQuery(".alert").fadeOut(1000);
+        }
+
+    }
+      });
+
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+   
+       
+      }); 
+
         
-            $.ajax({
-                type: "POST",
-                url: "addemployee",
-                dataType: "JSON",
-                data:{
-
-                    fName:fName,
-                    lName:lName,
-                    address:address,
-                    phone:phone,
-                    email:email,
-                    status:status
-                },
-                 success:function (response) {
-                    if(response.msg=="success"){
-
-                        jQuery(".msg").html('<div class="alert alert-success">Data  Submitted</div>');
-                        jQuery(".alert").fadeOut(1000);
-
-                        jQuery(".fName").val("");
-                        jQuery(".lName").val("");
-                        jQuery(".address").val("");
-                        jQuery(".phone").val("");
-                        jQuery(".email").val("");
-                        jQuery(".status").val("");
-                    }
-                    else{
-
-                        jQuery(".msg").html('<div class="alert alert-danger">Data Not Submitted</div>');
-                        jQuery(".alert").fadeOut(1000);
-                    }
      
-                }
-            });
-           
-        });  
-        
+  
 
-    });
-
-
+   
 
 
   </script>
