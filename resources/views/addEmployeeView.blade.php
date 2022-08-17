@@ -80,7 +80,7 @@
       <th scope="col">Status</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="show" >
       
   </tbody>
 </table>
@@ -108,10 +108,18 @@
             url: "showemployee",
             dataType: "JSON",
             success: function (response) {
-
+             var table="";
               $.each(response.alldata, function (Array, Element) { 
-                 console.log(Element.fName);
+                 table+='<tr>\
+                  <td>'+Element.fName +'  '+ Element.lName+'  </td>\
+                  <td>'+Element.email+'</td>\
+                  <td>'+Element.address+'</td>\
+                  <td>'+Element.phone+'</td>\
+                  <td>'+Element.status+'</td>\
+                  </tr>';
               });
+
+              jQuery("#show").html(table);
 
             
               
