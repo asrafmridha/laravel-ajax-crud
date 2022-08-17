@@ -25,4 +25,8 @@ Route::get('addemployeeview',[EmployeeController::class,'index'])->name('addempl
 // Route For add employee with ajax           
 Route::post("addemployee",[EmployeeController::class,"store"]);
 
+// Route for show employee with ajax
+
+Route::get("showemployee",[EmployeeController::class,"show"]);
+
 
