@@ -109,6 +109,10 @@
             dataType: "JSON",
             success: function (response) {
 
+              $.each(response.alldata, function (Array, Element) { 
+                 console.log(Element.fName);
+              });
+
             
               
             }
