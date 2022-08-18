@@ -34,3 +34,11 @@ Route::get("showemployee",[EmployeeController::class,"show"]);
 
 Route::get("deleteemployee/{id}",[EmployeeController::class,"destroy"]);
 
+//Route for show update data in modal
+
+Route::get("updatemodalshow/{id}",[EmployeeController::class,"edit"]);
+
+//Route for  update data
+
+Route::post("updatedata/{id}",[EmployeeController::class,"update"]);
+

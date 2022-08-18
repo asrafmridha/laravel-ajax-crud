@@ -101,7 +101,12 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data=Employee::find($id);
+
+        return response()->json([
+
+            "data"=>$data
+        ]);
     }
 
     /**
@@ -113,8 +118,29 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $employee= Employee::find($id);
+
+       $employee->fName=$request->fName;
+       $employee->lName=$request->lName;
+       $employee->address=$request->address;
+       $employee->phone=$request->phone;
+       $employee->email=$request->email;
+       $employee->status=$request->status;
+       $employee->update();
+
+       return response()->json([
+
+         "status"=>"success"
+       ]);
+
+      
+     
     }
+      
+        
+      
+       
+    
 
     /**
      * Remove the specified resource from storage.
@@ -124,6 +150,14 @@ class EmployeeController extends Controller
      */
     public function destroy($id)
     {
-        
+        $data=Employee::find($id);
+
+        $data->delete();
+        if($data){
+            return response()->json([
+
+                "status"=>"success"
+            ]);
+        }
     }
 }

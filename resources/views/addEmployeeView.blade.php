@@ -305,6 +305,87 @@
 
 
 
+    
+
+     //For Update show employee with ajax with modal
+
+     jQuery(document).on("click",".updatebtn",function(){
+
+$.ajaxSetup({
+  headers: {
+  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+  });
+
+  var id= jQuery(this).val();
+  jQuery(".updateemployee").val(id);
+
+  $.ajax({
+type: "GET",
+url: "updatemodalshow/"+id,
+dataType: "JSON",
+success: function (response) {
+ jQuery(".ufName").val(response.data.fName);
+ jQuery(".ulName").val(response.data.lName);
+ jQuery(".uemail").val(response.data.email);
+ jQuery(".uphone").val(response.data.phone);
+ jQuery(".uaddress").val(response.data.address);
+ jQuery(".ustatus").val(response.data.status);
+
+ 
+  
+}
+});
+});
+
+//For Update by ajax
+
+jQuery(document).on("click",".updateemployee",function(){
+
+id= jQuery(this).val();
+
+        var fName=jQuery(".ufName").val();
+        var lName=jQuery(".ulName").val();
+        var address=jQuery(".uaddress").val();
+        var phone=jQuery(".uphone").val();
+        var email=jQuery(".uemail").val();
+        var status=jQuery(".ustatus").val();
+        $.ajax({
+          type: "POST",
+          url: "updatedata/"+id,
+          dataType: "JSON",
+          data:{
+
+          fName:fName,
+          lName:lName,
+          address:address,
+          phone:phone,
+          email:email,
+          status:status
+        },
+      success:function (response) {
+            showemployee();
+            jQuery(".updateemployee").modal("hide");
+            jQuery(".msg").html('<div class="alert alert-danger">Data Updated</div>');
+            jQuery(".alert").fadeOut(1000);
+            
+
+  
+}
+});
+  
+
+
+    
+});
+
+
+
+
+
+
+
+
 
 
 
