@@ -97,8 +97,8 @@
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="deleteemployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal For Update -->
+<div class="modal fade" id="updateeemployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -106,11 +106,54 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+
+
+        <div class="form-group">
+          <label for="exampleInputEmail1">First Name</label>
+          <input type="text" class="ufName form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your First Name"  >
+          
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Last Name</label>
+            <input type="text" class="ulName form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Last Name"  >
+            
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Address</label>
+              <textarea id="" cols="30" rows="1" class="uaddress form-control" placeholder="Enter Your Address">
+          
+              </textarea>
+              
+              </div>
+          <div class="form-group">
+          <label for="exampleInputPassword1">Phone</label>
+          <input type="number" class="uphone form-control" id="exampleInputPassword1" placeholder="Enter Phone Number" >
+          </div>
+          
+          
+          
+          <div class="form-group">
+          <label for="exampleInputPassword1">Email</label>
+          <input type="email" class="uemail form-control" id="exampleInputPassword1" placeholder="Enter Your email" >
+          </div>
+          
+          
+          <div class="form-group">
+          <label for="exampleInputPassword1">Status</label>
+          <select class="ustatus form-control"  id="">
+            <option value="#">---Select--</option>
+          <option value="1">Active</option>
+          <option value="2">Inactive</option>
+          
+          </select>
+          </div> 
+     
+          
+      
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="deletebtn btn btn-primary">Save changes</button>
+        <button type="button" class="updateemployee btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -119,15 +162,24 @@
 
 
 
-
-
-
-
-
-
-
-
-
+<!-- Modal for delete Item -->
+<div class="modal fade" id="deleteemployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmation Message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+     Are You Sure Want to Delete This User?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="deletebtn btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -155,7 +207,7 @@
                   <td>'+Element.address+'</td>\
                   <td>'+Element.phone+'</td>\
                   <td>'+Element.status+'</td>\
-                  <td><button id="updatebtn" class="btn btn-success btn-sm"><i class="fa-solid fa-square-pen"></i></button></td>\
+                  <td><button id="updatebtn" value="'+Element.id+'" class="updatebtn btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#updateeemployee"><i class="fa-solid fa-square-pen"></i></button></td>\
                   <td><button value="'+Element.id+'" class="deleteid btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteemployee"><i class="fa-solid fa-trash"></i></button></td>\
                   </tr>';
               });
@@ -229,9 +281,9 @@
 
       });
 
-      //For delete employee with ajax
+       //For delete employee with ajax
 
-      jQuery(document).on("click",".deleteid",function () {
+       jQuery(document).on("click",".deleteid",function () {
         var deleteid=jQuery(this).val();
           jQuery(".deletebtn").val(deleteid);
 
@@ -250,9 +302,35 @@
           }
         });
     });
-      
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
       }); 
 
   
