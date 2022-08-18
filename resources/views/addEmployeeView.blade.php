@@ -18,6 +18,11 @@
    
 <div class="col-md-3 offset-md-1 ">
 
+    <div class="mb-3">
+
+      <input type="text" class="search form-control" placeholder="Search" >
+
+    </div>
     <div class="msg">
 
     </div>
@@ -376,15 +381,15 @@ jQuery(document).on("click",".updateemployee",function(){
             
 
   
-}
-});
-  
+    }
+    });
+      
 
-    
-});
+        
+    });
 
 
-
+           jQuery(document).on("")
 
      
       }); 
