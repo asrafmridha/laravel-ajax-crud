@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('addemployeeview');
 });
 
 
@@ -29,4 +29,8 @@ Route::post("addemployee",[EmployeeController::class,"store"]);
 
 Route::get("showemployee",[EmployeeController::class,"show"]);
 
+
+//Route for deleteemployee
+
+Route::get("deleteemployee/{id}",[EmployeeController::class,"destroy"]);
 
