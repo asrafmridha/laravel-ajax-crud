@@ -153,7 +153,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="updateemployee btn btn-primary">Save changes</button>
+        <button type="button" class="updateemployee btn btn-primary">Update</button>
       </div>
     </div>
   </div>
@@ -175,7 +175,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="deletebtn btn btn-primary">Save changes</button>
+        <button id="myModal" type="button" class="deletebtn btn btn-primary">Delete</button>
       </div>
     </div>
   </div>
@@ -290,15 +290,19 @@
          });
 
       $(document).on("click",".deletebtn",function() {
-      var id=jQuery(this).val();
+        
+        var id=jQuery(this).val();
         $.ajax({
           type: "GET",
           url: "deleteemployee/"+id,  
           dataType: "JSON",
           success: function (response) {
+            jQuery("#deleteemployee").modal("hide");
             showemployee();
             jQuery(".msg").html('<div class="alert alert-danger">Delete Successfully</div>');
             jQuery(".alert").fadeOut(1000);
+            
+            
           }
         });
     });
@@ -320,29 +324,29 @@ $.ajaxSetup({
   var id= jQuery(this).val();
   jQuery(".updateemployee").val(id);
 
-  $.ajax({
-type: "GET",
-url: "updatemodalshow/"+id,
-dataType: "JSON",
-success: function (response) {
- jQuery(".ufName").val(response.data.fName);
- jQuery(".ulName").val(response.data.lName);
- jQuery(".uemail").val(response.data.email);
- jQuery(".uphone").val(response.data.phone);
- jQuery(".uaddress").val(response.data.address);
- jQuery(".ustatus").val(response.data.status);
+          $.ajax({
+        type: "GET",
+        url: "updatemodalshow/"+id,
+        dataType: "JSON",
+        success: function (response) {
+        jQuery(".ufName").val(response.data.fName);
+        jQuery(".ulName").val(response.data.lName);
+        jQuery(".uemail").val(response.data.email);
+        jQuery(".uphone").val(response.data.phone);
+        jQuery(".uaddress").val(response.data.address);
+        jQuery(".ustatus").val(response.data.status);
 
  
   
-}
-});
-});
+        }
+        });
+        });
 
 //For Update by ajax
 
 jQuery(document).on("click",".updateemployee",function(){
 
-id= jQuery(this).val();
+       id= jQuery(this).val();
 
         var fName=jQuery(".ufName").val();
         var lName=jQuery(".ulName").val();
@@ -364,10 +368,11 @@ id= jQuery(this).val();
           status:status
         },
       success:function (response) {
+        jQuery("#updateeemployee").modal('hide');
             showemployee();
-            jQuery(".updateemployee").modal("hide");
             jQuery(".msg").html('<div class="alert alert-danger">Data Updated</div>');
             jQuery(".alert").fadeOut(1000);
+            
             
 
   
@@ -375,38 +380,8 @@ id= jQuery(this).val();
 });
   
 
-
     
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
