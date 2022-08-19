@@ -25,7 +25,7 @@ Route::get('addemployeeview',[EmployeeController::class,'index'])->name('addempl
 // Route For add employee with ajax           
 Route::post("addemployee",[EmployeeController::class,"store"]);
 
-// Route for show employee with ajax
+// Route for show employee with ajax 
 
 Route::get("showemployee",[EmployeeController::class,"show"]);
 
@@ -41,4 +41,7 @@ Route::get("updatemodalshow/{id}",[EmployeeController::class,"edit"]);
 //Route for  update data
 
 Route::post("updatedata/{id}",[EmployeeController::class,"update"]);
+
+// Route for Data Search 
+Route::get("search",[EmployeeController::class,"search"]);
 
