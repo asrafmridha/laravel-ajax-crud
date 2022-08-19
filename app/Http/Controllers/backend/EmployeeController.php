@@ -136,6 +136,19 @@ class EmployeeController extends Controller
       
      
     }
+
+    function search($search){
+
+      $data= Employee::where("phone",$search)->orwhere("email",$search)->get();
+       
+      return response()->json([
+
+         "data"=>$data
+      ]);
+
+
+
+    }
       
         
       
