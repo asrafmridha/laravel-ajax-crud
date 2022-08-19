@@ -139,7 +139,7 @@ class EmployeeController extends Controller
 
     function search($search){
 
-      $data= Employee::where("phone",$search)->orwhere("email",$search)->get();
+      $data= Employee::where("phone",$search)->orwhere("email",$search)->first();
        
       return response()->json([
 
