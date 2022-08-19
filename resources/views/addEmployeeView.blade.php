@@ -398,7 +398,13 @@ jQuery(document).on("click",".updateemployee",function(){
               url: "search/"+search,
               dataType: "JSON",
               success: function (response) {
-                jQuery(".fName").val(response.data);
+                jQuery(".fName").val(response.data.fName);
+                jQuery(".lName").val(response.data.lName);
+                jQuery(".email").val(response.data.email);
+                jQuery(".phone").val(response.data.phone);
+                jQuery(".address").val(response.data.address);
+                jQuery(".status").val(response.data.status);
+                
                 
               }
              });
