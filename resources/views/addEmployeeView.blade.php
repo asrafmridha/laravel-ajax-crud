@@ -389,7 +389,22 @@ jQuery(document).on("click",".updateemployee",function(){
     });
 
 
-           jQuery(document).on("")
+           jQuery(document).on("keyup",".search", function(){
+       
+             var search= jQuery(this).val();
+
+             $.ajax({
+              type: "GET",
+              url: "search/"+search,
+              dataType: "JSON",
+              success: function (response) {
+                jQuery(".fName").val(response.data);
+                
+              }
+             });
+           
+
+           });
 
      
       }); 
