@@ -398,12 +398,24 @@ jQuery(document).on("click",".updateemployee",function(){
               url: "search/"+search,
               dataType: "JSON",
               success: function (response) {
+                if(response.data !="empty"){
+
                 jQuery(".fName").val(response.data.fName);
                 jQuery(".lName").val(response.data.lName);
                 jQuery(".email").val(response.data.email);
                 jQuery(".phone").val(response.data.phone);
                 jQuery(".address").val(response.data.address);
                 jQuery(".status").val(response.data.status);
+                }
+                else{
+                jQuery(".fName").val("");
+                jQuery(".lName").val("");
+                jQuery(".email").val("");
+                jQuery(".phone").val("");
+                jQuery(".address").val("");
+                jQuery(".status").val("");
+
+                }
                 
                 
               }

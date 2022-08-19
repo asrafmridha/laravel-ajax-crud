@@ -141,10 +141,20 @@ class EmployeeController extends Controller
 
       $data= Employee::where("phone",$search)->orwhere("email",$search)->first();
        
-      return response()->json([
+      if($data!=null){
+        return response()->json([
 
-         "data"=>$data
-      ]);
+          "data"=>$data
+       ]);
+      }
+      else{
+
+        return response()->json([
+
+          "data"=>"empty"
+       ]);
+
+      }
 
 
 
